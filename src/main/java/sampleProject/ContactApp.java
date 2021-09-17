@@ -10,11 +10,10 @@ import io.grpc.internal.AutoConfiguredLoadBalancerFactory;
 public class ContactApp {
 	@Id
 	private Long Empid;
-	private String userName;
-	private String emailid;
+	@Index  String userName;
+	@Index  String emailid;
 	private String age;
-	@Index
-	private String phoneNo;
+	@Index private String phoneNo;
 	
 	public ContactApp() {
 		
