@@ -26,6 +26,8 @@ public class EmailRead extends HttpServlet {
 		//ContactApp entity = (ContactApp)OfyService.ofy().load().type(ContactApp.class).filter(ContactApp.userName, Name).list();
 		List<ContactApp> list=ofy().load().type(ContactApp.class).filter("emailid", Name).list();
 		
+		if(!list.isEmpty())
+		{
 		ListIterator<ContactApp> iterator = list.listIterator();
 		
 		PrintWriter out=response.getWriter();
@@ -43,5 +45,22 @@ public class EmailRead extends HttpServlet {
 				+ "Do you want to use our Service again?<br><br>Then Click here <a href='index.html'>Services Page</a>\r\n"
 				+ "</h2></center>\r\n"
 				+ "</html>");
+		}
+		else if(list.isEmpty())
+		{
+			response.getWriter().println("\r\n"
+					+ "<html>\r\n"
+					+ "<center><h1>Hi Sorry, Your contact detail is not found in our Database</h1></center>\r\n"
+					+ "</html>\r\n"
+					+ "\r\n"
+					+ "\r\n"
+					+ "");
+			response.getWriter().println("\r\n"
+					+ "<html>\r\n"
+					+ "<center><h2>\r\n"
+					+ "Do you want to use our Service again?<br><br>Then Click here <a href='index.html'>Services Page</a>\r\n"
+					+ "</h2></center>\r\n"
+					+ "</html>");
+		}
 	}
 }
